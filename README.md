@@ -29,7 +29,7 @@ Status values: Not started / In progress / In review / Merged. Each member updat
 
 | ID  | Workstream                                 | Owner | Branch            | Status      | Key output                                                       | Notes |
 | --- | ------------------------------------------ | ----- | ----------------- | ----------- | ---------------------------------------------------------------- | ----- |
-| M1  | Data cleaning and EDA                      |       | `m1/data-eda`     | Not started | `data/processed/mmm_clean.csv`, `src/data_prep.py`, EDA notebook |       |
+| M1 | Data cleaning and EDA | Dasun Hemachandra | `m1/data-eda` | In progress | `data/processed/mmm_clean.csv`, `src/data_prep.py`, EDA notebook | Cleaning and metadata exported; 20 local tests pass; EDA pending |  |
 | M2  | Adstock, saturation, time delays           |       | `m2/transforms`   | Not started | `src/transforms.py`, lag and saturation findings                 |       |
 | M3  | Primary MMM (sklearn + SciPy)              |       | `m3/mmm-core`     | Not started | `src/mmm.py`, model fit, CV results                              |       |
 | M4  | Statsmodels benchmark and external factors |       | `m4/statsmodels`  | Not started | diagnostics, factor effects                                      |       |
