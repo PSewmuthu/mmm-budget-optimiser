@@ -7,9 +7,12 @@ Contract: write data/processed/mmm_clean.csv
   - extra features: t (0..35), year, month_num,
     <channel>_share, log_revenue
 
-Year-on-year growth will be handled separately because its first
-12 months are undefined and the current clean CSV contract
-requires no missing values.
+Year-on-year growth is calculated separately in
+notebooks/01_m1_data_eda.ipynb and exported to
+outputs/tables/m1/revenue_yoy_growth_train.csv.
+
+Its first 12 months are undefined. Keeping this output separate
+preserves the clean CSV contract requiring no missing values.
 """
 
 import json
@@ -216,13 +219,37 @@ def main() -> None:
         "log_revenue_definition": (
             "natural logarithm of sales_revenue_lkr"
         ),
-        "notes": [
+                "notes": [
             "Synthetic data; findings are illustrative.",
             "Original spend and revenue values are preserved.",
             "No rows were removed or imputed.",
             "Spend discrepancies within LKR 5 are preserved.",
-            "Outlier analysis is pending.",
-            "Year-on-year growth is pending separate EDA output.",
+            (
+                "Exploratory analysis is implemented separately in "
+                "notebooks/01_m1_data_eda.ipynb; run that notebook "
+                "to generate EDA tables and figures."
+            ),
+            (
+                "EDA uses January 2023 to June 2025 (30 months). "
+                "July to December 2025 is reserved for holdout "
+                "evaluation. The cleaned CSV retains all 36 months."
+            ),
+            (
+                "Outlier thresholds and review decisions are "
+                "recorded separately in outputs/tables/m1/"
+                "outlier_thresholds_train.csv and "
+                "outputs/tables/m1/outlier_flags_train.csv."
+            ),
+            (
+                "Year-on-year revenue growth is exported separately "
+                "to outputs/tables/m1/revenue_yoy_growth_train.csv. "
+                "The first 12 growth values are undefined and "
+                "are not replaced with zero."
+            ),
+            (
+                "Log revenue and year-on-year revenue growth must "
+                "not be used as contemporaneous revenue predictors."
+            ),
         ],
     }
 
