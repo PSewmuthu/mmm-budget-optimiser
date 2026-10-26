@@ -1,7 +1,7 @@
 channel,vif,observations,predictor_set
-tv_spend_lkr,2.2549445923517584,30,six raw channel spends with intercept
-youtube_spend_lkr,2.072637904517019,30,six raw channel spends with intercept
-outdoor_spend_lkr,2.0022291440857063,30,six raw channel spends with intercept
-radio_spend_lkr,1.7883467924846757,30,six raw channel spends with intercept
-google_search_spend_lkr,1.6844682217236997,30,six raw channel spends with intercept
-facebook_instagram_spend_lkr,1.534381997295358,30,six raw channel spends with intercept
+tv_spend_lkr,2.2549445923517593,30,six raw channel spends with intercept
+youtube_spend_lkr,2.0726379045170193,30,six raw channel spends with intercept
+outdoor_spend_lkr,2.0022291440857067,30,six raw channel spends with intercept
+radio_spend_lkr,1.7883467924846759,30,six raw channel spends with intercept
+google_search_spend_lkr,1.6844682217237001,30,six raw channel spends with intercept
+facebook_instagram_spend_lkr,1.5343819972953587,30,six raw channel spends with intercept
