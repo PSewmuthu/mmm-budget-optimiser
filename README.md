@@ -163,4 +163,32 @@ The training-mean baseline achieved a lower MAPE of 4.31%. Therefore, the model'
 - `outputs/model/cv_results.csv` — Cross-validation performance
 - `outputs/model/holdout_metrics.json` — Final evaluation
 
+#### 3.1 Ridge Regularisation Sensitivity Analysis
+
+A sensitivity analysis was conducted to evaluate different Ridge regularisation strengths using expanding-window cross-validation on the first 30 months of data.
+
+The following alpha values were compared: 0.1, 0.3, 1.0, 3.0 and 10.0.
+
+| Ridge Alpha | Average CV MAPE | Average CV R² | Average CV NRMSE |
+|---|---:|---:|---:|
+| 0.1 | 4.140% | 0.484 | 5.430% |
+| 0.3 | 4.211% | 0.438 | 5.626% |
+| 1.0 | 4.900% | 0.362 | 6.232% |
+| 3.0 | 5.470% | 0.297 | 6.495% |
+| 10.0 | 5.555% | 0.262 | 6.411% |
+
+The training-mean baseline achieved an average CV NRMSE of 9.263%.
+
+Alpha = 0.1 produced the lowest average CV NRMSE, improving upon alpha = 0.3 by approximately 0.196 percentage points. However, the improvement was relatively small, and alpha = 0.3 performed better in one of the three validation folds.
+
+**Final Decision:** Ridge alpha = 0.3 was retained for the Primary MMM implementation because the improvement from alpha = 0.1 was small and there was insufficient evidence to justify changing the existing model configuration.
+
+The sensitivity analysis was performed using only the first 30 months. The final six-month holdout was excluded from this comparison. As the holdout had already been examined during the original evaluation, it is not treated as a fresh independent test for subsequent model-selection decisions.
+
+The existing holdout results (MAPE = 6.18%, R² = -0.417, NRMSE = 7.08%) remain unchanged.
+
+The sensitivity analysis is reproducible using `python -m src.mmm_alpha_review`. Its results are available in `outputs/model/review/`.
+
+The model's forecasting limitations remain documented, and the transformation parameter ranges are subject to confirmation with M2.
+
 **Status:** Implementation complete; parameter-range confirmation and downstream integration review pending.
