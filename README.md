@@ -27,17 +27,17 @@ python run_all.py        # runs the pipeline stages merged so far
 
 Status values: Not started / In progress / In review / Merged. Each member updates their own row in their PRs.
 
-| ID  | Workstream                                 | Owner             | Branch            | Status      | Key output                                                       | Notes                                                              |
-| --- | ------------------------------------------ | ----------------- | ----------------- | ----------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ |
-| M1  | Data cleaning and EDA                      | Dasun Hemachandra | `m1/data-eda`     | Completed   | `data/processed/mmm_clean.csv`, `src/data_prep.py`, EDA notebook | Cleaning and metadata exported; 20 local tests pass; EDA completed |
-| M2  | Adstock, saturation, time delays           |                   | `m2/transforms`   | Not started | `src/transforms.py`, lag and saturation findings                 |                                                                    |
-| M3  | Primary MMM (sklearn + SciPy)              |                   | `m3/mmm-core`     | Not started | `src/mmm.py`, model fit, CV results                              |                                                                    |
-| M4  | Statsmodels benchmark and external factors |                   | `m4/statsmodels`  | Not started | diagnostics, factor effects                                      |                                                                    |
-| M5  | Channel effectiveness and ROI              |                   | `m5/roi`          | Not started | `outputs/powerbi/channel_roi.csv` etc.                           |                                                                    |
-| M6  | Budget optimisation                        |                   | `m6/optimiser`    | Not started | `src/optimiser.py`, scenarios                                    |                                                                    |
-| M7  | Power BI dashboard                         |                   | `m7/dashboard`    | Not started | `dashboard/*.pbix`                                               |                                                                    |
-| M8  | Report and integration                     |                   | `m8/report-infra` | Not started | `report/`, `run_all.py`, CI                                      |                                                                    |
-| M9  | Review and merge only                      |                   | `master`          | n/a         |                                                                  |                                                                    |
+| ID  | Workstream                                 | Branch            | Status      | Key output                                                       | Notes                                                              |
+| --- | ------------------------------------------ | ----------------- | ----------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ |
+| M1  | Data cleaning and EDA                      | `m1/data-eda`     | Completed   | `data/processed/mmm_clean.csv`, `src/data_prep.py`, EDA notebook | Cleaning and metadata exported; 20 local tests pass; EDA completed |
+| M2  | Adstock, saturation, time delays           | `m2/transforms`   | Completed   | `src/transforms.py`, lag and saturation findings                 | Data transformations completed and have passed all 59 tests        |
+| M3  | Primary MMM (sklearn + SciPy)              | `m3/mmm-core`     | Not started | `src/mmm.py`, model fit, CV results                              |                                                                    |
+| M4  | Statsmodels benchmark and external factors | `m4/statsmodels`  | Not started | diagnostics, factor effects                                      |                                                                    |
+| M5  | Channel effectiveness and ROI              | `m5/roi`          | Not started | `outputs/powerbi/channel_roi.csv` etc.                           |                                                                    |
+| M6  | Budget optimisation                        | `m6/optimiser`    | Not started | `src/optimiser.py`, scenarios                                    |                                                                    |
+| M7  | Power BI dashboard                         | `m7/dashboard`    | Not started | `dashboard/*.pbix`                                               |                                                                    |
+| M8  | Report and integration                     | `m8/report-infra` | Not started | `report/`, `run_all.py`, CI                                      |                                                                    |
+| M9  | Review and merge only                      | `master`          | n/a         |                                                                  |                                                                    |
 
 ## Milestones
 
