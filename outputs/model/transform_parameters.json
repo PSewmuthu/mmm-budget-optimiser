@@ -1,0 +1,21 @@
+{
+  "shared_decay": 0.35218414231388745,
+  "shared_half_sat_multiplier": 0.9211405288144175,
+  "shared_hill_slope": 1.4639540280136325,
+  "development_half_sat": {
+    "tv_spend_lkr": 6117217.979268163,
+    "facebook_instagram_spend_lkr": 5997154.248868535,
+    "google_search_spend_lkr": 4562237.508837768,
+    "youtube_spend_lkr": 3064813.1432650853,
+    "radio_spend_lkr": 2227978.9633734995,
+    "outdoor_spend_lkr": 3544029.5655639805
+  },
+  "deployed_half_sat": {
+    "tv_spend_lkr": 6288127.868256573,
+    "facebook_instagram_spend_lkr": 6267847.369023394,
+    "google_search_spend_lkr": 4674084.993387763,
+    "youtube_spend_lkr": 3108332.8572367993,
+    "radio_spend_lkr": 2320427.6603915375,
+    "outdoor_spend_lkr": 3676274.116377561
+  }
+}

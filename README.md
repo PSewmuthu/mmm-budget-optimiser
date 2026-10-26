@@ -100,3 +100,67 @@ Definitions: **ROI** = incremental revenue (LKR) / ad spend (LKR); **marginal RO
 - Dataset is synthetic; findings are illustrative.
 - Impressions, clicks and conversions exist only as totals (not per channel); `total_ad_spend_lkr` equals the channel sum within LKR 2.
 - ROI is revenue-based (no margin data); model shows association, not proven causation.
+
+## M3 — Primary MMM: Parameter Configuration and Review
+
+### Overview
+
+The Primary Marketing Mix Model (MMM) uses constrained Ridge regression with geometric adstock and Hill saturation transformations from M2.
+
+SciPy differential evolution is used to optimise transformation parameters using expanding-window time-series cross-validation.
+
+### 1. Model Hyperparameters
+
+| Parameter | Selected Value | Search Range |
+|---|---:|---|
+| Adstock decay | 0.3522 | 0.05–0.70 |
+| Half-saturation multiplier | 0.9211 | 0.70–1.70 |
+| Hill slope | 1.4640 | 0.75–1.50 |
+| Ridge regularisation (`alpha`) | 0.30 | Fixed |
+| SciPy optimisation iterations | 10 | Fixed |
+
+The transformation ranges are provisional and require confirmation against M2's time-delay and diminishing-returns analysis.
+
+### 2. Channel Half-Saturation Parameters
+
+The final refitted model uses:
+
+| Channel | Half-Saturation (LKR) |
+|---|---:|
+| TV | 6,288,128 |
+| Facebook / Instagram | 6,267,847 |
+| Google Search | 4,674,085 |
+| YouTube | 3,108,333 |
+| Radio | 2,320,428 |
+| Outdoor | 3,676,274 |
+
+These values represent half-saturation levels on the adstocked spend scale, not direct monthly spending recommendations.
+
+### 3. Model Validation
+
+- Dataset: 36 monthly observations
+- Development dataset: First 30 months
+- Holdout dataset: Final 6 months
+- Cross-validation: 3 expanding-window folds
+- Regression: Constrained Ridge
+- Optimisation: SciPy differential evolution
+
+**Holdout performance**
+
+| Metric | Result |
+|---|---:|
+| MAPE | 6.18% |
+| R² | -0.417 |
+| NRMSE | 7.08% |
+
+The training-mean baseline achieved a lower MAPE of 4.31%. Therefore, the model's forecasting performance remains limited.
+
+### 4. Files for Review
+
+- `src/mmm.py` — Model implementation
+- `src/mmm_fit.py` — Training and validation
+- `outputs/model/transform_parameters.json` — Selected transformation parameters
+- `outputs/model/cv_results.csv` — Cross-validation performance
+- `outputs/model/holdout_metrics.json` — Final evaluation
+
+**Status:** Implementation complete; parameter-range confirmation and downstream integration review pending.
