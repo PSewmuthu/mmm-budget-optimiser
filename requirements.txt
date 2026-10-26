@@ -1,2 +1,14 @@
 pytest
 nbstripout
+
+# M1 data preparation and tests
+numpy
+pandas
+openpyxl
+
+# M1 exploratory notebook
+matplotlib
+seaborn
+statsmodels
+ipython
+ipykernel

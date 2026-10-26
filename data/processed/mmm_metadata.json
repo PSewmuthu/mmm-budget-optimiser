@@ -1,0 +1,34 @@
+{
+  "source_file": "data/raw/Dataset.xlsx",
+  "source_sheet": "MMM_Data",
+  "dictionary_sheet": "Data_Dictionary",
+  "dictionary_rows": 20,
+  "constants": {
+    "country": "Sri Lanka",
+    "brand_category": "FMCG - Packaged Foods",
+    "region_scope": "National",
+    "data_type": "SYNTHETIC"
+  },
+  "validation": {
+    "rows": 36,
+    "start_month": "2023-01-01",
+    "end_month": "2025-12-01",
+    "missing_values": 0,
+    "max_spend_difference_lkr": 2.0,
+    "data_type": "SYNTHETIC",
+    "status": "PASS"
+  },
+  "spend_share_denominator": "sum of six channel spends",
+  "log_revenue_definition": "natural logarithm of sales_revenue_lkr",
+  "notes": [
+    "Synthetic data; findings are illustrative.",
+    "Original spend and revenue values are preserved.",
+    "No rows were removed or imputed.",
+    "Spend discrepancies within LKR 5 are preserved.",
+    "Exploratory analysis is implemented separately in notebooks/01_m1_data_eda.ipynb; run that notebook to generate EDA tables and figures.",
+    "EDA uses January 2023 to June 2025 (30 months). July to December 2025 is reserved for holdout evaluation. The cleaned CSV retains all 36 months.",
+    "Outlier thresholds and review decisions are recorded separately in outputs/tables/m1/outlier_thresholds_train.csv and outputs/tables/m1/outlier_flags_train.csv.",
+    "Year-on-year revenue growth is exported separately to outputs/tables/m1/revenue_yoy_growth_train.csv. The first 12 growth values are undefined and are not replaced with zero.",
+    "Log revenue and year-on-year revenue growth must not be used as contemporaneous revenue predictors."
+  ]
+}
