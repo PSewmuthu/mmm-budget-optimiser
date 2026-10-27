@@ -1,0 +1,2 @@
+model,training_observations,r_squared,adjusted_r_squared,aic,bic,covariance_type
+M4_OLS_HAC,30,0.860179943877525,0.7296812248298818,-86.19711068206507,-65.17914995713275,HAC

@@ -1,0 +1,7 @@
+channel,m3_direction,m4_direction,m4_elasticity,m4_p_value,direction_disagreement
+tv_spend_lkr,positive,positive,0.020098177958310037,0.5651685322408078,False
+facebook_instagram_spend_lkr,positive,negative,-0.07767700596315574,0.24188298826885457,True
+google_search_spend_lkr,positive,positive,0.19195670700213618,0.0010115794735652366,False
+youtube_spend_lkr,positive,positive,0.11897379050866919,0.05534892394048608,False
+radio_spend_lkr,positive,negative,-0.20037532208601094,0.0031715330669187733,True
+outdoor_spend_lkr,positive,negative,-0.001253635346714077,0.9763070429072661,True

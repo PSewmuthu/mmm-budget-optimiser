@@ -17,7 +17,7 @@ python run_all.py        # runs the pipeline stages merged so far
 ## Project deliverables
 
 - [x] Cleaned dataset and exploratory analysis (M1)
-- [ ] Working Marketing Mix Model (M2, M3, M4)
+- [x] Working Marketing Mix Model (M2, M3, M4)
 - [ ] Channel effectiveness and ROI analysis (M5)
 - [ ] Budget optimisation algorithm (M6)
 - [ ] Interactive Power BI dashboard (M7)
@@ -27,35 +27,26 @@ python run_all.py        # runs the pipeline stages merged so far
 
 Status values: Not started / In progress / In review / Merged. Each member updates their own row in their PRs.
 
-| ID  | Workstream                                 | Branch            | Status      | Key output                                                       | Notes                                                              |
-| --- | ------------------------------------------ | ----------------- | ----------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ |
-| M1  | Data cleaning and EDA                      | `m1/data-eda`     | Completed   | `data/processed/mmm_clean.csv`, `src/data_prep.py`, EDA notebook | Cleaning and metadata exported; 20 local tests pass; EDA completed |
-| M2  | Adstock, saturation, time delays           | `m2/transforms`   | Completed   | `src/transforms.py`, lag and saturation findings                 | Data transformations completed and have passed all 59 tests        |
-| M3  | Primary MMM (sklearn + SciPy)              | `m3/mmm-core`     | Not started | `src/mmm.py`, model fit, CV results                              |                                                                    |
-| M4  | Statsmodels benchmark and external factors | `m4/statsmodels`  | Not started | diagnostics, factor effects                                      |                                                                    |
-| M5  | Channel effectiveness and ROI              | `m5/roi`          | Not started | `outputs/powerbi/channel_roi.csv` etc.                           |                                                                    |
-| M6  | Budget optimisation                        | `m6/optimiser`    | Not started | `src/optimiser.py`, scenarios                                    |                                                                    |
-| M7  | Power BI dashboard                         | `m7/dashboard`    | Not started | `dashboard/*.pbix`                                               |                                                                    |
-| M8  | Report and integration                     | `m8/report-infra` | Not started | `report/`, `run_all.py`, CI                                      |                                                                    |
-| M9  | Review and merge only                      | `master`          | n/a         |                                                                  |                                                                    |
+| ID  | Workstream                                 | Branch            | Status      | Key output                                                       | Notes                                                                      |
+| --- | ------------------------------------------ | ----------------- | ----------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| M1  | Data cleaning and EDA                      | `m1/data-eda`     | Completed   | `data/processed/mmm_clean.csv`, `src/data_prep.py`, EDA notebook | Cleaning and metadata exported; 20 local tests pass; EDA completed         |
+| M2  | Adstock, saturation, time delays           | `m2/transforms`   | Completed   | `src/transforms.py`, lag and saturation findings                 | Data transformations completed and have passed all 59 tests                |
+| M3  | Primary MMM (sklearn + SciPy)              | `m3/mmm-core`     | Completed   | `src/mmm.py`, model fit, CV results                              | Primary model development completed and passed all tests                   |
+| M4  | Statsmodels benchmark and external factors | `m4/statsmodels`  | Completed   | diagnostics, factor effects                                      | Statsmodel benchmark completed with good results and passed all test cases |
+| M5  | Channel effectiveness and ROI              | `m5/roi`          | Not started | `outputs/powerbi/channel_roi.csv` etc.                           |                                                                            |
+| M6  | Budget optimisation                        | `m6/optimiser`    | Not started | `src/optimiser.py`, scenarios                                    |                                                                            |
+| M7  | Power BI dashboard                         | `m7/dashboard`    | Not started | `dashboard/*.pbix`                                               |                                                                            |
+| M8  | Report and integration                     | `m8/report-infra` | Not started | `report/`, `run_all.py`, CI                                      |                                                                            |
+| M9  | Review and merge only                      | `master`          | n/a         |                                                                  |                                                                            |
 
 ## Milestones
 
 | Phase                    | Gate                                                   | Target date | Done |
 | ------------------------ | ------------------------------------------------------ | ----------- | ---- |
 | 1. Foundations           | Clean dataset and `config.py` merged                   |             | ✅   |
-| 2. Modelling             | MMM and benchmark merged, signs and fit reviewed       |             | [ ]  |
+| 2. Modelling             | MMM and benchmark merged, signs and fit reviewed       |             | ✅   |
 | 3. Insight and decisions | ROI tables, scenario grid merged; dashboard reads them |             | [ ]  |
 | 4. Report and polish     | Report numbers reproduced by `make all`                |             | [ ]  |
-
-## Key results (fill in as they land)
-
-| Item                                       | Result | Source file |
-| ------------------------------------------ | ------ | ----------- |
-| Model holdout MAPE / R²                    |        |             |
-| Best / worst channel ROI                   |        |             |
-| Estimated carry-over (adstock) per channel |        |             |
-| Recommended budget mix and expected uplift |        |             |
 
 ## Repo layout
 
@@ -111,13 +102,13 @@ SciPy differential evolution is used to optimise transformation parameters using
 
 ### 1. Model Hyperparameters
 
-| Parameter | Selected Value | Search Range |
-|---|---:|---|
-| Adstock decay | 0.3522 | 0.05–0.70 |
-| Half-saturation multiplier | 0.9211 | 0.70–1.70 |
-| Hill slope | 1.4640 | 0.75–1.50 |
-| Ridge regularisation (`alpha`) | 0.30 | Fixed |
-| SciPy optimisation iterations | 10 | Fixed |
+| Parameter                      | Selected Value | Search Range |
+| ------------------------------ | -------------: | ------------ |
+| Adstock decay                  |         0.3522 | 0.05–0.70    |
+| Half-saturation multiplier     |         0.9211 | 0.70–1.70    |
+| Hill slope                     |         1.4640 | 0.75–1.50    |
+| Ridge regularisation (`alpha`) |           0.30 | Fixed        |
+| SciPy optimisation iterations  |             10 | Fixed        |
 
 The transformation ranges are provisional and require confirmation against M2's time-delay and diminishing-returns analysis.
 
@@ -125,14 +116,14 @@ The transformation ranges are provisional and require confirmation against M2's 
 
 The final refitted model uses:
 
-| Channel | Half-Saturation (LKR) |
-|---|---:|
-| TV | 6,288,128 |
-| Facebook / Instagram | 6,267,847 |
-| Google Search | 4,674,085 |
-| YouTube | 3,108,333 |
-| Radio | 2,320,428 |
-| Outdoor | 3,676,274 |
+| Channel              | Half-Saturation (LKR) |
+| -------------------- | --------------------: |
+| TV                   |             6,288,128 |
+| Facebook / Instagram |             6,267,847 |
+| Google Search        |             4,674,085 |
+| YouTube              |             3,108,333 |
+| Radio                |             2,320,428 |
+| Outdoor              |             3,676,274 |
 
 These values represent half-saturation levels on the adstocked spend scale, not direct monthly spending recommendations.
 
@@ -148,10 +139,10 @@ These values represent half-saturation levels on the adstocked spend scale, not 
 **Holdout performance**
 
 | Metric | Result |
-|---|---:|
-| MAPE | 6.18% |
-| R² | -0.417 |
-| NRMSE | 7.08% |
+| ------ | -----: |
+| MAPE   |  6.18% |
+| R²     | -0.417 |
+| NRMSE  |  7.08% |
 
 The training-mean baseline achieved a lower MAPE of 4.31%. Therefore, the model's forecasting performance remains limited.
 
@@ -170,12 +161,12 @@ A sensitivity analysis was conducted to evaluate different Ridge regularisation 
 The following alpha values were compared: 0.1, 0.3, 1.0, 3.0 and 10.0.
 
 | Ridge Alpha | Average CV MAPE | Average CV R² | Average CV NRMSE |
-|---|---:|---:|---:|
-| 0.1 | 4.140% | 0.484 | 5.430% |
-| 0.3 | 4.211% | 0.438 | 5.626% |
-| 1.0 | 4.900% | 0.362 | 6.232% |
-| 3.0 | 5.470% | 0.297 | 6.495% |
-| 10.0 | 5.555% | 0.262 | 6.411% |
+| ----------- | --------------: | ------------: | ---------------: |
+| 0.1         |          4.140% |         0.484 |           5.430% |
+| 0.3         |          4.211% |         0.438 |           5.626% |
+| 1.0         |          4.900% |         0.362 |           6.232% |
+| 3.0         |          5.470% |         0.297 |           6.495% |
+| 10.0        |          5.555% |         0.262 |           6.411% |
 
 The training-mean baseline achieved an average CV NRMSE of 9.263%.
 
