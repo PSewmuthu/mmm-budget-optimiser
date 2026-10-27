@@ -100,3 +100,95 @@ Definitions: **ROI** = incremental revenue (LKR) / ad spend (LKR); **marginal RO
 - Dataset is synthetic; findings are illustrative.
 - Impressions, clicks and conversions exist only as totals (not per channel); `total_ad_spend_lkr` equals the channel sum within LKR 2.
 - ROI is revenue-based (no margin data); model shows association, not proven causation.
+
+## M3 — Primary MMM: Parameter Configuration and Review
+
+### Overview
+
+The Primary Marketing Mix Model (MMM) uses constrained Ridge regression with geometric adstock and Hill saturation transformations from M2.
+
+SciPy differential evolution is used to optimise transformation parameters using expanding-window time-series cross-validation.
+
+### 1. Model Hyperparameters
+
+| Parameter | Selected Value | Search Range |
+|---|---:|---|
+| Adstock decay | 0.3522 | 0.05–0.70 |
+| Half-saturation multiplier | 0.9211 | 0.70–1.70 |
+| Hill slope | 1.4640 | 0.75–1.50 |
+| Ridge regularisation (`alpha`) | 0.30 | Fixed |
+| SciPy optimisation iterations | 10 | Fixed |
+
+The transformation ranges are provisional and require confirmation against M2's time-delay and diminishing-returns analysis.
+
+### 2. Channel Half-Saturation Parameters
+
+The final refitted model uses:
+
+| Channel | Half-Saturation (LKR) |
+|---|---:|
+| TV | 6,288,128 |
+| Facebook / Instagram | 6,267,847 |
+| Google Search | 4,674,085 |
+| YouTube | 3,108,333 |
+| Radio | 2,320,428 |
+| Outdoor | 3,676,274 |
+
+These values represent half-saturation levels on the adstocked spend scale, not direct monthly spending recommendations.
+
+### 3. Model Validation
+
+- Dataset: 36 monthly observations
+- Development dataset: First 30 months
+- Holdout dataset: Final 6 months
+- Cross-validation: 3 expanding-window folds
+- Regression: Constrained Ridge
+- Optimisation: SciPy differential evolution
+
+**Holdout performance**
+
+| Metric | Result |
+|---|---:|
+| MAPE | 6.18% |
+| R² | -0.417 |
+| NRMSE | 7.08% |
+
+The training-mean baseline achieved a lower MAPE of 4.31%. Therefore, the model's forecasting performance remains limited.
+
+### 4. Files for Review
+
+- `src/mmm.py` — Model implementation
+- `src/mmm_fit.py` — Training and validation
+- `outputs/model/transform_parameters.json` — Selected transformation parameters
+- `outputs/model/cv_results.csv` — Cross-validation performance
+- `outputs/model/holdout_metrics.json` — Final evaluation
+
+#### 3.1 Ridge Regularisation Sensitivity Analysis
+
+A sensitivity analysis was conducted to evaluate different Ridge regularisation strengths using expanding-window cross-validation on the first 30 months of data.
+
+The following alpha values were compared: 0.1, 0.3, 1.0, 3.0 and 10.0.
+
+| Ridge Alpha | Average CV MAPE | Average CV R² | Average CV NRMSE |
+|---|---:|---:|---:|
+| 0.1 | 4.140% | 0.484 | 5.430% |
+| 0.3 | 4.211% | 0.438 | 5.626% |
+| 1.0 | 4.900% | 0.362 | 6.232% |
+| 3.0 | 5.470% | 0.297 | 6.495% |
+| 10.0 | 5.555% | 0.262 | 6.411% |
+
+The training-mean baseline achieved an average CV NRMSE of 9.263%.
+
+Alpha = 0.1 produced the lowest average CV NRMSE, improving upon alpha = 0.3 by approximately 0.196 percentage points. However, the improvement was relatively small, and alpha = 0.3 performed better in one of the three validation folds.
+
+**Final Decision:** Ridge alpha = 0.3 was retained for the Primary MMM implementation because the improvement from alpha = 0.1 was small and there was insufficient evidence to justify changing the existing model configuration.
+
+The sensitivity analysis was performed using only the first 30 months. The final six-month holdout was excluded from this comparison. As the holdout had already been examined during the original evaluation, it is not treated as a fresh independent test for subsequent model-selection decisions.
+
+The existing holdout results (MAPE = 6.18%, R² = -0.417, NRMSE = 7.08%) remain unchanged.
+
+The sensitivity analysis is reproducible using `python -m src.mmm_alpha_review`. Its results are available in `outputs/model/review/`.
+
+The model's forecasting limitations remain documented, and the transformation parameter ranges are subject to confirmation with M2.
+
+**Status:** Implementation complete; parameter-range confirmation and downstream integration review pending.
