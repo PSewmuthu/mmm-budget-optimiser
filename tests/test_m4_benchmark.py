@@ -124,3 +124,54 @@ def test_distributed_lag_model(model_data, tmp_path, monkeypatch):
         tmp_path / "outputs" / "tables" / "m4"
         / "distributed_lag_results.csv"
     ).exists()
+
+
+def test_m3_m4_comparison(tmp_path, monkeypatch):
+    """
+    Verify M3 and M4 comparison outputs.
+    """
+
+    from src import m4_m3_comparison as comparison
+
+    monkeypatch.setattr(
+        comparison,
+        "OUTPUT_DIR",
+        tmp_path
+    )
+
+    model_metrics, predictions, channels = (
+        comparison.compare_models()
+    )
+
+    # Two models must be compared
+    assert len(model_metrics) == 2
+
+    assert set(model_metrics["model"]) == {
+        "M3_Primary_MMM",
+        "M4_Statsmodels",
+    }
+
+    # Six holdout months
+    assert len(predictions) == 6
+
+    # Six marketing channels
+    assert len(channels) == 6
+
+    # Predictions must be finite
+    assert np.isfinite(
+        predictions[
+            [
+                "actual_revenue_lkr",
+                "m3_predicted_revenue_lkr",
+                "m4_predicted_revenue_lkr",
+            ]
+        ].to_numpy()
+    ).all()
+
+    # All comparison CSV files exist
+    for filename in [
+        "m3_m4_model_comparison.csv",
+        "m3_m4_predictions.csv",
+        "m3_m4_channel_comparison.csv",
+    ]:
+        assert (tmp_path / filename).exists()
