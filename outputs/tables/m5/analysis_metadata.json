@@ -1,0 +1,17 @@
+{
+  "analysis": "M5 Channel Effectiveness and ROI",
+  "model": "M3 refitted primary MMM",
+  "months_analysed": 36,
+  "holdout_metrics": {
+    "mape_pct": 6.177383541894513,
+    "r2": -0.41729296671733374,
+    "nrmse_pct": 7.083287079929295
+  },
+  "limitations": [
+    "Attribution is model-based, not causal proof.",
+    "ROI uses attributed revenue, not profit.",
+    "Marginal ROAS is a steady-state model estimate.",
+    "Historical ROI and marginal ROAS are not directly comparable.",
+    "Low predictive accuracy reduces confidence in rankings."
+  ]
+}
