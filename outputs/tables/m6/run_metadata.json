@@ -1,0 +1,9 @@
+{
+  "base_monthly_budget_lkr": 18576125.666666664,
+  "bootstrap_draws": 200,
+  "bootstrap_block_length": 3,
+  "robust_ensemble_size": 60,
+  "primary_bounds": "medium_70_130",
+  "seed": 42,
+  "note": "Uplift is measured against the current mix scaled proportionally to the scenario budget. Intervals cover coefficient uncertainty only."
+}
