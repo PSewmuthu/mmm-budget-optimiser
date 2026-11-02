@@ -18,7 +18,7 @@ python run_all.py        # runs the pipeline stages merged so far
 
 - [x] Cleaned dataset and exploratory analysis (M1)
 - [x] Working Marketing Mix Model (M2, M3, M4)
-- [ ] Channel effectiveness and ROI analysis (M5)
+- [x] Channel effectiveness and ROI analysis (M5)
 - [x] Budget optimisation algorithm (M6)
 - [ ] Interactive Power BI dashboard (M7)
 - [ ] Final report with data-driven recommendations (M8)
@@ -33,7 +33,7 @@ Status values: Not started / In progress / In review / Merged. Each member updat
 | M2  | Adstock, saturation, time delays           | `m2/transforms`   | Completed   | `src/transforms.py`, lag and saturation findings                 | Data transformations completed and have passed all 59 tests                |
 | M3  | Primary MMM (sklearn + SciPy)              | `m3/mmm-core`     | Completed   | `src/mmm.py`, model fit, CV results                              | Primary model development completed and passed all tests                   |
 | M4  | Statsmodels benchmark and external factors | `m4/statsmodels`  | Completed   | diagnostics, factor effects                                      | Statsmodel benchmark completed with good results and passed all test cases |
-| M5  | Channel effectiveness and ROI              | `m5/roi`          | Not started | `outputs/powerbi/channel_roi.csv` etc.                           |                                                                            |
+| M5  | Channel effectiveness and ROI              | `m5/roi`          | Completed   | `outputs/powerbi/channel_roi.csv` etc.                           | ROI analysis and test cases were completed and all test cases have passed  |
 | M6  | Budget optimisation                        | `m6/optimiser`    | Completed   | `src/optimiser.py`, scenarios                                    | Completed optimisation processes and test cases                            |
 | M7  | Power BI dashboard                         | `m7/dashboard`    | Not started | `dashboard/*.pbix`                                               |                                                                            |
 | M8  | Report and integration                     | `m8/report-infra` | Not started | `report/`, `run_all.py`, CI                                      |                                                                            |
